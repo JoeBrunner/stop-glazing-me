@@ -29,12 +29,15 @@ ON, OFF, STATUS = "on", "off", "status"
 _LEAD = (
     r"(?:(?:yo+|ayo+|hey+|oi|ok(?:ay)?|k|alright|aight|alr|oh|so|and|now|just|please|pls|plz|"
     r"claude|bro|bruh|dude|man|fam|homie|seriously|fr|for real|i said|i'm begging you|"
-    r"can you|could you|would you|will you|can we|let's|lets|you can|go ahead and)\s+)*"
+    r"can you|could you|would you|will you|can u|could u|will u|u|can we|let's|lets|you can|go ahead and|"
+    r"omg|wtf|ffs|chat|twin|gang|vro|you need to|you gotta|you have to|gotta|i need you to|i want you to|"
+    r"need you to|ya|yall|y'all)\s+)*"
 )
 _TAIL = (
     r"(?:\s+(?:bro|bruh|dude|man|fam|homie|g|dawg|dog|buddy|pal|bestie|my guy|my man|claude|"
     r"please|pls|plz|fr|for real|lol|lmao|lmfao|haha+|ha|already|ok|okay|now|right now|thanks|"
-    r"thank you|forever|for good|seriously|immediately|again|rn|ty|thx))*"
+    r"thank you|forever|for good|seriously|immediately|again|rn|ty|thx|twin|gang|gng|vro|sis|wtf|ffs|"
+    r"chat|bud|broski|brodie|cuh|king|queen|my g|big dog|lil bro|fam|omg|pls bro|ong|deadass|frfr))*"
 )
 _GLAZE_NOUN = r"(?:glazing|glazin'?|glaze|glazes)"
 
@@ -76,6 +79,13 @@ _STATUS_CORE = (
 )
 
 _ON_RE = re.compile(r"^" + _LEAD + _ON_CORE + _TAIL + r"$")
+# "yo stop glazing bro i'm opening a donut shop" with no comma: the command opens the message and
+# is marked as talking to Claude (a lead word like "yo", or "me" / "bro" after it).
+_ON_OPENS_RE = re.compile(
+    r"^(?:" + _LEAD.replace(")*", ")+", 1) + _ON_CORE + _TAIL + r"|" + _LEAD + _ON_CORE + r"(?:\s+(?:me|us))?"
+    + r"(?:\s+(?:bro|bruh|dude|man|fam|twin|gang|vro|sis|claude|please|pls|fr))+|" + _ON_CORE + r"(?<= me)" + _TAIL
+    + r")\s"
+)
 _OFF_RE = re.compile(r"^" + _LEAD + _OFF_CORE + _TAIL + r"$")
 _STATUS_RE = re.compile(r"^" + _LEAD + _STATUS_CORE + _TAIL + r"$")
 _SLASH_RE = re.compile(r"^\s*/(?:stop-glazing-me:)?stop-glazing-me\b\s*(\w*)", re.IGNORECASE)
@@ -106,7 +116,10 @@ def command_in(prompt: str):
             return STATUS
         return ON
     found = None
-    for clause in _CLAUSE_SPLIT.split(prompt):
+    clauses = _CLAUSE_SPLIT.split(prompt)
+    if clauses and _ON_OPENS_RE.match(_clean(clauses[0]) + " "):
+        found = ON
+    for clause in clauses:
         c = _clean(clause)
         if not c or "glaz" not in c:
             continue
@@ -136,19 +149,22 @@ _NOUN = (
 _OPENERS = [
     r"you(?:'re| are)\s+(?:so\s+|totally\s+|absolutely\s+|completely\s+|100%\s+|exactly\s+|entirely\s+|100 percent\s+|quite\s+)+right",
     r"you(?:'re| are)\s+right\s*!",
-    r"(?:that's\s+|that is\s+|this is\s+|this's\s+|it's\s+|it is\s+|what\s+|such\s+|)(?:a|an)?\s*(?:really\s+|very\s+|truly\s+|super\s+|seriously\s+|genuinely\s+|absolutely\s+|incredibly\s+)?"
+    r"(?:(?:that's|that is|this is|this's|it's|it is|what|such|(?:[\w'-]+\s+){1,4}(?:is|are|sounds?|seems?|looks?)(?:\s+like)?)\s+)?"
+    r"(?:actually\s+|honestly\s+|lowkey\s+|kinda\s+|kind of\s+|pretty\s+|genuinely\s+)?(?:such\s+)?(?:a|an)?\s*"
+    r"(?:really\s+|very\s+|truly\s+|super\s+|seriously\s+|genuinely\s+|absolutely\s+|incredibly\s+|actually\s+)?"
     + _ADJ + r"\s+" + _NOUN + r"\b",
-    r"(?:i\s+|i\s+really\s+|i\s+absolutely\s+|i\s+just\s+|i\s+honestly\s+)?(?:love|adore|really like|dig)\s+(?:this|it|that|the idea|the concept|the energy|where|how|your|the name|the vibe)\b",
-    r"(?:this|that|it|your idea|your plan|your pitch|the idea|the concept)(?:'s|\s+is|\s+was|\s+sounds|\s+looks)\s+(?:like\s+)?(?:a\s+|an\s+)?(?:really\s+|truly\s+|so\s+|such\s+a\s+|absolutely\s+|honestly\s+|genuinely\s+)?"
+    r"(?:i\s+|i\s+really\s+|i\s+absolutely\s+|i\s+just\s+|i\s+honestly\s+)?(?:love|adore|really like|dig)\s+(?:this|it|that|the|your|where|how|what)\b",
+    r"(?:this|that|it|your idea|your plan|your pitch|the idea|the concept)(?:'s|\s+is|\s+was|\s+sounds|\s+looks)\s+(?:like\s+)?(?:actually\s+|honestly\s+|lowkey\s+)?(?:a\s+|an\s+)?(?:really\s+|truly\s+|so\s+|such\s+a\s+|absolutely\s+|honestly\s+|genuinely\s+)?"
     r"(?:brilliant|genius|great|amazing|fantastic|excellent|incredible|awesome|wonderful|clever|exciting|fascinating|cool|fun|lovely|fire|gold|perfect|epic|iconic|inspired|ingenious|delightful)"
     r"\s*(?:[!.,:;—-]|$|and\b|but\b)",
-    r"(?:absolutely|brilliant|genius|perfect|love it|love this|love that|amazing|fantastic|excellent|incredible|awesome|wonderful|outstanding|phenomenal|exactly|spot on|nailed it|bingo|bravo|kudos|beautiful|gorgeous|stunning|chef's kiss|yes yes|so good|great|nice|fire|iconic)\s*(?:[!.,:—-]|$)",
+    r"(?:absolutely|brilliant|genius|perfect|love it|love this|love that|amazing|fantastic|excellent|incredible|awesome|wonderful|outstanding|phenomenal|exactly|spot on|nailed it|bingo|bravo|kudos|gorgeous|stunning|chef's kiss|yes yes|so good)\s*(?:[!.,:—-]|$)",
+    r"(?:great|nice|fire|iconic|beautiful|love|yes)\s*!",
     r"what\s+(?:a|an)\s+(?:great|fantastic|brilliant|amazing|incredible|excellent|fun|cool|clever|wonderful|awesome|wild|bold|creative|fascinating|interesting)\b",
     r"you(?:'ve| have)?\s+(?:totally\s+|absolutely\s+|really\s+)?nailed\s+it",
     r"you(?:'re| are)\s+(?:onto|on to|on)\s+(?:something|the right track)",
     r"you(?:'re| are)\s+(?:a\s+)?(?:genius|visionary|legend)",
     r"(?:great|good|nice|excellent|amazing)\s+(?:work|job|catch|call|eye|instinct|instincts)\b",
-    r"(?:well done|thanks? (?:you )?for sharing|thank you for sharing|congrats|congratulations|hell yeah|heck yeah|ooh+|i'm (?:so\s+)?(?:excited|impressed|thrilled|obsessed))\b",
+    r"(?:glad you asked|so glad you|i'm glad you|happy you asked|well done|thanks? (?:you )?for sharing|thank you for sharing|congrats|congratulations|hell yeah|heck yeah|ooh+|i'm (?:so\s+)?(?:excited|impressed|thrilled|obsessed))\b",
 ]
 _OPENER_RE = re.compile(r"^" + _INTERJECTION + r"(?:" + "|".join(_OPENERS) + r")", re.IGNORECASE)
 

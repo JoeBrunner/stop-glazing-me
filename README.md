@@ -105,25 +105,23 @@ trend (pickle chips, pickle lemonade, pickle pizza) ... *(then four tips and a m
 
 > yo stop glazing bro
 
-Glaze is off, so you'll get it straight from here on. Say "glaze me again" if you want it back.
+Glaze is off, so from here on you get straight answers. Say "glaze me again" to turn it back on.
 
 *(a brand-new session, the next day if you like)*
 
 > I'm opening a donut shop that only sells pickle donuts.
 
-The biggest problem is repeat visits. Lots of people will try a pickle donut once, but a donut shop lives on regulars who come back weekly, and a single novelty flavor rarely brings people back that often.
+The biggest problem is repeat business. Most people will try a pickle donut once for the novelty and the photo, and a donut shop needs regulars who come back weekly. Pickle-only also lets one person in a group veto the stop: if one of four friends hates pickles, the whole group goes somewhere else. And the theme is easy to copy. Any existing bakery can add a pickle donut as a limited special and take your novelty traffic without giving up its main business.
 
-- **You have one product.** If the pickle donut reviews badly, gets copied by a bigger bakery, or the trend fades, you have nothing else to sell.
-- **Groups pick somewhere else.** If even one person in a group hates pickles, the whole group goes to a shop where everyone can find something. Office orders and family runs make up a big share of donut sales, and you'd lose them.
-- **The kitchen is harder than it looks.** Brine makes dough wet and makes fried food go soggy faster. Pickle-flavored glazes can also turn out too salty or too sour. Shelf life and consistency will be worse than a plain glazed donut.
+What it has going for it is a strong, memorable identity that's easy to market. Pickle fans are vocal and share things online, so you'll get free attention at launch.
 
-The idea is easy to explain and easy to share online, so you could get attention cheaply when you launch.
+Three ways it could fail, most likely first:
 
-**Three likely ways it fails:**
+1. **Sales drop sharply after the launch buzz.** Months 1–3 look great, then foot traffic falls off. *Fix:* Treat "pickle" as a broad range, not one flavor. Rotate sweet-leaning options (dill sugar, bread-and-butter glaze, pickle-brine lemonade glaze) and savory ones (pickle and cream cheese, a Cuban-style donut sandwich), and launch a new one every 2–4 weeks so regulars have a reason to come back.
 
-1. **Big opening months, then sales drop off.** Curious customers come early and then stop. *Fix:* Before signing a lease, run pop-ups or a farmers-market stand for 8–12 weeks and track how many customers come back. If fewer than about 25–30% return within a month, the full-shop version won't hold up.
-2. **The menu is too narrow to bring people back.** *Fix:* Treat "pickle" as a range, not one flavor. Offer dill, bread-and-butter (sweet), spicy, kimchi or other ferments, and savory stuffed versions. Rotate a monthly special and keep one gentle "starter" flavor for people who are unsure. That still fits the concept and gives regulars a reason to return.
-3. **Profit margins are thin and a lot of product gets thrown out.** The donuts don't keep well and demand is hard to predict, so leftovers pile up. *Fix:* Bake in small batches, take preorders for boxes, and add a higher-margin item that keeps longer. Jarred house pickles, pickle-brine lemonade, or merch would bring in money on slow days.
+2. **Customers who don't like pickles can't buy anything.** You lose groups, office orders and parents with kids. *Fix:* Keep one mild "gateway" donut where pickle is barely there, plus coffee and a non-pickle drink. You can stay pickle-only in spirit without turning away a third of your customers.
+
+3. **The donuts aren't consistent or don't keep well.** Brine adds moisture and acid, which can make dough gummy and glaze weep, and that's a problem for wholesale or anything sitting in a case. *Fix:* Test recipes and shelf life before signing a lease. Measure texture at 0, 4 and 8 hours, and use pickle powder or reduced brine instead of raw brine where it holds up better.
 
 ## How the guard works
 

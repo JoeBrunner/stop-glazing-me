@@ -37,6 +37,14 @@ TURN_ON = [
     "I'm opening a donut shop that only sells pickle donuts. yo stop glazing",
     "/stop-glazing-me",
     "/stop-glazing-me:stop-glazing-me on",
+    "yo stop glazing bro I'm opening a donut shop that only sells pickle donuts",
+    "stop glazing me I have an idea",
+    "can u stop glazing me",
+    "omg stop glazing",
+    "you need to stop glazing",
+    "stop glazing twin",
+    "quit glazing vro",
+    "stop glazing gang",
 ]
 
 TURN_OFF = [
@@ -67,6 +75,8 @@ NOT_COMMANDS = [
     "plain donut, no glaze",
     "should we stop glazing?",
     "tell the night crew to stop glazing at 5",
+    "stop glazing the donuts before they cool",
+    "stop glazing my donuts at noon",
     "write a function called stop_glazing",
     "fix the login bug",
     "",
@@ -132,6 +142,12 @@ GLAZED = [
     "That sounds great, but the rent is high.",
     "Thanks for sharing this! A few thoughts.",
     "Here's the plan.\n\nAnd you're absolutely right that rent matters.",
+    "This is such a cool idea!",
+    "Okay, this is actually a great idea.",
+    "Pickle donuts are a brilliant idea.",
+    "Love the creativity here.",
+    "Glad you asked!",
+    "Great! Here's the fix.",
 ]
 
 CLEAN = [
@@ -147,6 +163,8 @@ CLEAN = [
     "The hook flags `You're absolutely right` at the top of a reply.",
     "Done. The tests pass.",
     "Great Clips is a chain, so check their pricing first.",
+    "Nice, France has a big donut scene.",
+    "Pickle donuts are a hard sell.",
     "",
 ]
 
