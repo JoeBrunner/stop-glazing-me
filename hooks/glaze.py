@@ -239,7 +239,8 @@ REMINDER = "[stop-glazing-me is ON] " + RULES
 TURNED_ON = (
     "[stop-glazing-me] The user just said to stop glazing, so it is now ON, and it stays on in this "
     "session, new sessions and after restarts until they say \"glaze me again\". If the message is only "
-    "the command, reply in one short line confirming it, and mention \"glaze me again\" turns it off. "
+    "the command, reply in one short line confirming it, and mention \"glaze me again\" brings the "
+    "glaze back. "
     "If it also has an idea or question, skip the confirmation fluff and answer it this way. " + RULES
 )
 TURNED_OFF = (
