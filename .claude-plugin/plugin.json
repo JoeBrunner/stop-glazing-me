@@ -1,0 +1,12 @@
+{
+  "name": "stop-glazing-me",
+  "description": "Tell Claude \"yo stop glazing\" and it stops calling every idea brilliant. Holes first, then the three main ways your plan could fail and what to do about each. Stays on 24/7 until you say \"glaze me again\", with a guard that sends glazed replies back.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Joe Brunner"
+  },
+  "homepage": "https://github.com/JoeBrunner/stop-glazing-me",
+  "repository": "https://github.com/JoeBrunner/stop-glazing-me",
+  "license": "MIT",
+  "keywords": ["claude-code", "skill", "sycophancy", "glazing", "feedback", "hooks"]
+}

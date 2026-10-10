@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "stop-glazing-me",
+  "description": "The Stop Glazing Me skill for Claude Code",
+  "owner": {
+    "name": "Joe Brunner"
+  },
+  "plugins": [
+    {
+      "name": "stop-glazing-me",
+      "description": "Stops Claude from calling every idea brilliant: holes first, then the three main ways your plan could fail and the fix for each. On 24/7 once you say \"yo stop glazing\".",
+      "source": "./",
+      "category": "productivity",
+      "homepage": "https://github.com/JoeBrunner/stop-glazing-me"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "description": "Stop Glazing Me: the on/off switch, the 24/7 reminder, and the guard that sends glazed replies back.",
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/glaze.py\" prompt",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/glaze.py\" session",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/glaze.py\" stop",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}
