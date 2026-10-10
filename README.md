@@ -10,7 +10,7 @@ Free, MIT, no signup, no API key, nothing to connect.
 
 ## Install
 
-**Claude Code, the easy way.** Paste this into Claude Code:
+**Claude Code.** Paste this into Claude Code:
 
 ```
 https://github.com/JoeBrunner/stop-glazing-me
@@ -18,24 +18,45 @@ https://github.com/JoeBrunner/stop-glazing-me
 install the skill
 ```
 
-**Claude Code, as a plugin** (the skill plus the 24/7 guard):
+Claude installs it as a plugin: the skill plus the little guard that keeps it on 24/7. Or run the
+same two lines yourself in Claude Code:
 
 ```
 /plugin marketplace add JoeBrunner/stop-glazing-me
 /plugin install stop-glazing-me@stop-glazing-me
 ```
 
-**Copy the folder** (the skill only, no guard):
+**The Claude app** (claude.ai or the desktop app). Download
+[stop-glazing-me.zip](https://github.com/JoeBrunner/stop-glazing-me/raw/main/stop-glazing-me.zip),
+then in Claude go to **Customize > Skills**, click **+**, then **Create skill > Upload a skill**, and
+pick the zip. Skills need "Code execution and file creation" turned on in **Settings > Capabilities**.
+
+**Just the skill file** (no guard), if that's how you like it:
 
 ```bash
 git clone https://github.com/JoeBrunner/stop-glazing-me.git
 cp -r stop-glazing-me/skills/stop-glazing-me ~/.claude/skills/
 ```
 
-**The Claude app** (claude.ai or the desktop app). Download
-[stop-glazing-me.zip](https://github.com/JoeBrunner/stop-glazing-me/raw/main/stop-glazing-me.zip),
-then in Claude go to **Customize > Skills**, click **+**, then **Create skill > Upload a skill**, and
-pick the zip. Skills need "Code execution and file creation" turned on in **Settings > Capabilities**.
+### Notes for Claude, if you're installing this for someone
+
+Stop Glazing Me is one package: the skill and its hooks ship together as a Claude Code plugin. The
+promise that it stays on in new sessions and after a restart is the hooks. The skill file alone can't
+keep it. So when someone pastes this link and asks you to install the skill, install the plugin:
+
+```bash
+claude plugin marketplace add JoeBrunner/stop-glazing-me
+claude plugin install stop-glazing-me@stop-glazing-me
+```
+
+What the hooks do, so you can check before you run anything: `hooks/glaze.py` is one file of
+standard library Python. No network, no API key, no dependencies. It writes one file,
+`~/.claude/stop-glazing-me/state.json`, which holds the on/off switch. Each hook times out in 5
+seconds and fails open. Afterward, tell them what you installed, to run `/reload-plugins` (or restart
+Claude Code), to say "yo stop glazing" to turn it on, and that
+`claude plugin uninstall stop-glazing-me@stop-glazing-me` removes it. If the `claude` command isn't
+available, copy `skills/stop-glazing-me` into `~/.claude/skills/` and tell them they got the skill
+without the always-on guard.
 
 ### What you get where
 
@@ -120,22 +141,8 @@ Three small hooks, one Python file, standard library only:
    never asks twice, so it can't loop.
 
 Every hook times out in 5 seconds and fails open: if anything goes wrong, it does nothing and your
-Claude carries on. Turn all of it off for one session with `STOP_GLAZING_ME_QUIET=1`.
-
-### Installing this for someone? (notes for Claude)
-
-If a user pasted this link and asked you to install it, install the plugin so they get the 24/7 guard.
-Run these two commands in their shell:
-
-```bash
-claude plugin marketplace add JoeBrunner/stop-glazing-me
-claude plugin install stop-glazing-me@stop-glazing-me
-```
-
-Then tell them it's installed, to run `/reload-plugins` (or restart Claude Code), and to say
-"yo stop glazing" to turn it on. If the `claude` command isn't available, copy
-`skills/stop-glazing-me` into `~/.claude/skills/` instead and tell them they got the skill without the
-always-on guard. It needs Python 3.8 or newer for the guard, and nothing else.
+Claude carries on. It needs Python 3.8 or newer and nothing else. Turn all of it off for one session
+with `STOP_GLAZING_ME_QUIET=1`.
 
 ## Tests
 
